@@ -1,0 +1,60 @@
+{**
+ * @param string $title html
+ * @param array $timeline
+ * @param array $colors
+ * @param Query[] $queries
+ * @param array $timesPerStorage
+ *}
+
+<style n:syntax="off">
+	#nette-debug-panel-Mikulas-Diagnostics-QueryPanel tr .right { text-align: right; }
+	#nette-debug-panel-Mikulas-Diagnostics-QueryPanel .sum { width: 20%; display: inline-block; }
+	#nette-debug-panel-Mikulas-Diagnostics-QueryPanel .timeline { width: 78%; display: inline-block; }
+	#nette-debug-panel-Mikulas-Diagnostics-QueryPanel .timeline div { display: inline-block; height: 25px; transition: height .05s, background-color .1s; }
+	#nette-debug-panel-Mikulas-Diagnostics-QueryPanel .timeline div.filled { background-color: blue; }
+	#nette-debug-panel-Mikulas-Diagnostics-QueryPanel .timeline div.empty { background-color: #DDD; height: 3px; }
+	#nette-debug-panel-Mikulas-Diagnostics-QueryPanel .timeline div.hover { background-color: green; height: 28px; }
+</style>
+
+<h1>{$title|noescape}</h1>
+
+<div style="vertical-align: center">
+	<div class="sum">
+		<table>
+			<tr>
+				<th class="right">ms</th>
+				<th>Storage</th>
+			</tr>
+			<tr n:foreach="$timesPerStorage as $storage => $time" style="border-left: 3px solid #{$colors[$storage]}">
+				<td class="right">{$time|number:2}</td>
+				<td>{$storage}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="timeline">
+		{foreach $timeline as $block}{*
+			*}<div data-id="{$block->i}" style="width: {$block->percent|noescape}%" n:class="$block->query ? filled : empty"></div>{*
+		*}{/foreach}
+	</div>
+</div>
+
+<table>
+	<tr>
+		<th class="right">ms</th>
+		<th>Query</th>
+		<th>Rows</th>
+	</tr>
+	<tr n:foreach="$queries as $i => $query" class="query-panel-query-row" data-id="{$i}" style="border-left: 3px solid #{$query->color}">
+		<td class="right">{$query->duration|number:2}</td>
+		<td>{$query->query|noescape}</td>
+		<td>{$query->rowCount}</td>
+	</tr>
+</table>
+
+<script>
+	$('.query-panel-query-row').hover(function() {
+		$('.timeline [data-id="' + $(this).data('id') + '"]').addClass('hover');
+	}, function() {
+		$('.timeline [data-id="' + $(this).data('id') + '"]').removeClass('hover');
+	});
+</script>

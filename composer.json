@@ -1,0 +1,20 @@
+{
+    "name": "mikulas/nette-panel-queries",
+    "description": "Tracy panel listing queries to all storages",
+    "require": {
+        "nette/nette": "~2.1.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mikulas Dite",
+            "email": "mikulas@dite.pro"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Mikulas\\Diagnostics\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
