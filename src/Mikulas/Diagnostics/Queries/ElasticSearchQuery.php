@@ -41,7 +41,7 @@ class ElasticSearchQuery extends Query
 	 */
 	public function getDuration()
 	{
-		return $this->response->took;
+		return @$this->response->took;
 	}
 
 	/**

@@ -15,13 +15,13 @@ class Neo4jQuery extends Query
 	/** @var Command */
 	private $command;
 
-	/** @var ResultSet */
+	/** @var ResultSet|bool */
 	private $result;
 
 	/** @var Transport */
 	private $transport;
 
-	public function __construct(Command $command, ResultSet $result, Transport $transport)
+	public function __construct(Command $command, $result, Transport $transport)
 	{
 		$this->command = $command;
 		$this->result = $result;
