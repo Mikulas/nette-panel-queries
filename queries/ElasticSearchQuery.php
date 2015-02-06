@@ -40,6 +40,11 @@ class ElasticSearchQuery extends Object implements IQuery
 	 */
 	public function getResult()
 	{
+		if (!isset($this->response['hits']['hits']))
+		{
+			return NULL;
+		}
+
 		$html = Dumper::toHtml($this->response['hits']['hits'], [
 			Dumper::COLLAPSE => TRUE,
 			Dumper::TRUNCATE => 50,
@@ -83,7 +88,7 @@ class ElasticSearchQuery extends Object implements IQuery
 	 */
 	public function getElapsedTime()
 	{
-		return $this->response['took'];
+		return isset($this->response['took']) ? $this->response['took'] : NULL;
 	}
 
 	/**

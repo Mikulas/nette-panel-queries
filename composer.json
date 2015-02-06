@@ -2,9 +2,9 @@
     "name": "mikulas/query-panel",
     "description": "Universal query panel for Tracy",
     "require": {
-        "tracy/tracy": "~2.2.0,~2.3.0",
-        "nette/utils": "~2.2.0,~2.3.0",
-        "latte/latte": "~2.2.0,~2.3.0"
+        "tracy/tracy": "~2.2.0 || ~2.3.0-RC",
+        "nette/utils": "~2.2.0 || ~2.3.0-RC",
+        "latte/latte": "~2.2.0 || ~2.3.0-RC"
     },
     "license": "MIT",
     "authors": [
